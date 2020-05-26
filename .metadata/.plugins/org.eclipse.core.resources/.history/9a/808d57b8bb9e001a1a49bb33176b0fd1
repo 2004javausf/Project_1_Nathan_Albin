@@ -1,0 +1,19 @@
+package com.trs.dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import com.trs.beans.TRS_User;
+import com.trs.util.ConnFactory;
+
+public class GetInfoImpl {
+	
+	public static ConnFactory cf = ConnFactory.getInstance();
+	
+	public static List<TRS_User> getInfo() throws SQLException {
+		
+		
+		
+	}
+
+}

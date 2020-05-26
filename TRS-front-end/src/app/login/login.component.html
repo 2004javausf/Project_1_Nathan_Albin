@@ -1,0 +1,17 @@
+<p>loginworksjfkldj</p>
+<div class="logEmIn">
+    <input id = "usr" type="text" placeholder="Enter Username" name="username" required>
+    <input id="pass" placeholder="Enter Password" [type]="show ? 'text' : 'password'" />
+    <button (click)="password()" type="button">Show</button>
+    <select id = "accType" required>
+        <option value="Emp">Employee</option>
+        <option value="BenCo">Benefits Coordinator</option>
+        <option value="DeptHead">Department Head</option>
+        <option value="DirSup">Direct Supervisor</option>
+    </select>
+    
+    <button (click)="onClick($event)" type="button">Login</button>
+</div>
+<div class="container" id="loginMessage">
+    <p id="msg"></p>
+</div>

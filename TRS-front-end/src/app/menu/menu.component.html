@@ -1,0 +1,30 @@
+<div class="showaccinfo" id="accinfo">
+    <button (click)="showAccInfo()" type="button">Show Account Information</button>
+    <div id="userinfo"></div>
+</div>
+<button id="showapp" (click)="toggle()">Create Application</button>
+<div id="createapp" class="createApplication" hidden>
+    <p id="ms1">Event Type</p>
+    <select id = "eventType" required>
+        <option value="University Course">University Course</option>
+        <option value="Seminar">Seminar</option>
+        <option value="Certification Prep">Certification Prep</option>
+        <option value="Certification">Certification</option>
+        <option value="Technical Training">Technical Training</option>
+        <option value="Other">Other</option>
+    </select>
+    <br>
+    <p id="ms2">Event Cost</p>
+    <input id="cost" name="eventCost" type="text" required>
+    <br>
+    <p id="ms3">Grading Type</p>
+    <select id="gradeType" required>
+        <option value="Letter Grade">Letter Grade</option>
+        <option value="Pass/Fail">Pass/Fail</option>
+    </select>
+    <br>
+    <p id="ms4">Event Start Date</p>
+    <input id="date" name="currentDate" type="text" placeholder="YYYY-MM-DD" required>
+    <button (click)="submitApp()" name="submitinfo" id="submitinfo" type="submit">Submit Information</button>
+    <div id="returnStmt"></div>
+</div>

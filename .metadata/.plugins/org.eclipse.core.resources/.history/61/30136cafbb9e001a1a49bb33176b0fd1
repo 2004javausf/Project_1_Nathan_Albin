@@ -1,0 +1,5 @@
+package com.trs.dao;
+
+public class GetInfoImpl {
+
+}

@@ -1,0 +1,18 @@
+
+public class Application {
+
+	private int formId;
+	private String username;
+	private String eventType;
+	private double eventCost;
+	private String gradeType;
+	private String startDate;
+	private double rAmt;
+	private double rAdditional;
+	private String grade;
+	private String status;
+	
+	
+	
+	
+}
