@@ -1,7 +1,6 @@
-INDEX VERSION 1.4+C:\Users\natha\Desktop\sts-4.6.0.RELEASE\git\Project1_Nathan_Albin\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3970080464.index
+INDEX VERSION 1.4+C:\Users\natha\Desktop\sts-4.6.0.RELEASE\git\Project_1_Nathan_Albin\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3659457382.index
+1375464203.index
 2982532850.index
-3400497647.index
-2842764682.index
-2766609817.index
-3245904935.index
+28852373.index
+1601368407.index
