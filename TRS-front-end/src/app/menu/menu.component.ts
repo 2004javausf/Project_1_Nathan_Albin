@@ -1,26 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TRS_User } from '../TRS_User'
+import { Observable } from 'rxjs';
+import { UserService } from '../services/user.service';
+
+
+
 @Component({
+
+  
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
+  users: Observable<TRS_User[]>;
+
+  constructor(
+    private httpClient: HttpClient,
+    private userService : UserService) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem("usr"))
   }
 
   toggle() {
-    document.getElementById("createapp").removeAttribute("hidden");
     var x = document.getElementById("createapp");
     if (x.style.display == "none") {
       x.style.display = "block";
-    } else {
+    } else if (x.style.display == "block") {
       x.style.display = "none";
+    } else {
+      x.style.display = "block";
     }
   }
 
@@ -50,18 +62,25 @@ export class MenuComponent implements OnInit {
   
   showAccInfo() {
     let userinfo = document.getElementById("userinfo");
-    let user = {
+    let usr = {
       username: localStorage.getItem("usr")
     }
-
-    this.httpClient.post<TRS_User[]>("http://localhost:8080/TRS/info", user)
+    this.httpClient.post("http://localhost:8080/TRS/info", usr)
     .subscribe(x => {
-      let tmp = JSON.stringify(x);
-      userinfo.innerHTML = tmp;
-      
+      let xx = JSON.stringify(x);
+      let xxx = JSON.parse(xx);
+      console.log(xxx);
+      userinfo.innerHTML = 
+        "Username: " + xxx[0]["username"] + "<br>" +
+        "First Name: " + xxx[0]["firstName"] + "<br>" +
+        "Last Name: " + xxx[0]["lastName"] + "<br>" +
+        "Balance: " + xxx[0]["balance"] + "<br>" +
+        "Account Type: " + xxx[0]["accType"];
     });
 
 
+  
   }
 
+  
 }

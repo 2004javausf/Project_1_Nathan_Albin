@@ -1,3 +1,21 @@
-<div class="Show event offers">
-    
+<div class="ShowEventOffers">
+    <button (click)="getAllOffers()" type="button">Show Active Applications</button> 
+    <div id="offerinfo" hidden></div>
+</div>
+<button id="showofferinput" (click)="toggle()">Accept or Deny an Application</button>
+<div class="AcceptDenyOffer" id="adoffer"  hidden>
+
+    <p id="as1">Form ID</p>
+    <input id="formId" name="formid" type="text" required>
+    <br>
+    <p id="as2">Accept or Deny</p>
+    <select id = "acceptordeny" required>
+        <option value="Accept">Accept</option>
+        <option value="Deny">Deny</option>
+    </select>
+    <br>
+    <p id="as3">Reason (reason not required for accepting form)</p>
+    <input id="reason" name="denyReason" type="text" placeholder="none">
+    <button (click)="acceptDenyOffer()" name="submitacceptdeny" id="submitinfo" type="submit">Submit</button>
+    <div id="returnstmt"></div>
 </div>

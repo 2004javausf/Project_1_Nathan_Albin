@@ -1,0 +1,46 @@
+package com.trs.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.trs.util.ConnFactory;
+
+public class AcceptDenyDAOImpl {
+	
+	public static ConnFactory cf = ConnFactory.getInstance();
+	
+	public static void acceptDenyApplication(int formId, String acceptDeny, String accType) {
+		Connection conn = cf.getConnection();
+		String sql = "";
+		if(acceptDeny.equals("Accept")) {
+			
+		}
+		
+	}
+
+	public static int getNumAccepted(int formId) {
+		int numAccepted = 0;
+		Connection conn = cf.getConnection();
+		String sql = "SELECT DIR_SUP_APPROVE, DEPT_HEAD_APPROVE, BENCO_APPROVE FROM PROCESSING WHERE F_ID = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, formId);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int j = 0;
+				for(int i = 0; i <= 3; i++) {
+					if(rs.getString(i).equals("Accepted")) {
+						j = j + 1;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return numAccepted;
+	}
+	
+}

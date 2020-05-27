@@ -39,4 +39,14 @@
     <servlet-name>ApplicationServlet</servlet-name>
     <url-pattern>/application</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AcceptDenyServlet</display-name>
+    <servlet-name>AcceptDenyServlet</servlet-name>
+    <servlet-class>com.trs.servlet.AcceptDenyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AcceptDenyServlet</servlet-name>
+    <url-pattern>/acceptdeny</url-pattern>
+  </servlet-mapping>
 </web-app>

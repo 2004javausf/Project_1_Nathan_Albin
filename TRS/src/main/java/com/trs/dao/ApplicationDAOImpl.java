@@ -130,7 +130,7 @@ public class ApplicationDAOImpl {
 	
 	public static void insertProcess(String username) {
 		Connection conn = cf.getConnection();
-		String sql = "INSERT INTO PROCESSING(USERNAME, F_ID) VALUES('" + username + "', SEQ_F_ID2.NEXTVAL)";
+		String sql = "INSERT INTO PROCESSING VALUES('" + username + "', SEQ_F_ID2.NEXTVAL, 'none', 'none', 'none', 'none', 'none', 'none')";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.executeQuery(sql);
@@ -164,5 +164,24 @@ public class ApplicationDAOImpl {
 		
 		
 	}
+	
+	public static List<Application> getActiveApplications() {
+		List<Application> app = new ArrayList<Application>();
+		Connection conn = cf.getConnection();
+		String sql = "SELECT * FROM FORMS WHERE F_STATUS = 'Not Accepted' OR F_STATUS = 'Not Accepted (Urgent)' OR F_STATUS = 'Processing'";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				app.add(new Application(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), rs.getString(9), rs.getString(10)));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		return app;
+		
+	}
+	
 	
 }

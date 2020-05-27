@@ -1,0 +1,10 @@
+package com.trs.beans;
+
+public class AcceptDeny {
+	
+	private int formId;
+	private String acceptDeny;
+	private String accType;
+	private String reason;
+
+}

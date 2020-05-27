@@ -11,8 +11,10 @@ export class UserService {
   constructor(private httpclient: HttpClient) { }
 
   getInfo() : Observable<TRS_User[]> {
-
-    return this.httpclient.get<TRS_User[]>("http://localhost:8080/TRS/info");
+    let usr = {
+      username: localStorage.getItem("usr")
+    }
+    return this.httpclient.post<TRS_User[]>("http://localhost:8080/TRS/info", usr);
   }
 
 

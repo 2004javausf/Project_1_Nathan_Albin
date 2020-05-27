@@ -2,6 +2,7 @@ package com.trs.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +24,14 @@ public class ApplicationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("In doGet of application servlet");
+		ObjectMapper mapper = new ObjectMapper();
+		List<Application> l = ApplicationDAOImpl.getActiveApplications();
+		String infoJSON = mapper.writeValueAsString(l);
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter pw = response.getWriter();
+		pw.print(infoJSON);
 	}
 
 	/**

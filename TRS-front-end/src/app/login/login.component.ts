@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit, RouterModule {
     var pass = ((document.getElementById("pass") as HTMLInputElement).value);
     localStorage.setItem("usr", usr);
     var acctype = ((document.getElementById("accType") as HTMLInputElement).value);
+    localStorage.setItem("acctiep", acctype);
     var message = document.getElementById("msg");
     var user = {
       "username": usr,
