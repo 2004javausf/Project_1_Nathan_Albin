@@ -12,6 +12,7 @@ public class Application {
 	private double rAdditional;
 	private String grade;
 	private String status;
+	private int numAccepted;
 	
 	
 	
@@ -34,6 +35,24 @@ public class Application {
 		this.rAdditional = rAdditional;
 		this.grade = grade;
 		this.status = status;
+	}
+
+
+
+	public Application(int formId, String username, String eventType, double eventCost, String gradeType,
+			String startDate, double rAmt, double rAdditional, String grade, String status, int numAccepted) {
+		super();
+		this.formId = formId;
+		this.username = username;
+		this.eventType = eventType;
+		this.eventCost = eventCost;
+		this.gradeType = gradeType;
+		this.startDate = startDate;
+		this.rAmt = rAmt;
+		this.rAdditional = rAdditional;
+		this.grade = grade;
+		this.status = status;
+		this.numAccepted = numAccepted;
 	}
 
 
@@ -157,13 +176,32 @@ public class Application {
 	}
 
 
+	
+	
+
+	public int getNumAccepted() {
+		return numAccepted;
+	}
+
+
+
+	public void setNumAccepted(int numAccepted) {
+		this.numAccepted = numAccepted;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "Application [formId=" + formId + ", username=" + username + ", eventType=" + eventType + ", eventCost="
 				+ eventCost + ", gradeType=" + gradeType + ", startDate=" + startDate + ", rAmt=" + rAmt
-				+ ", rAdditional=" + rAdditional + ", grade=" + grade + ", status=" + status + "]";
+				+ ", rAdditional=" + rAdditional + ", grade=" + grade + ", status=" + status + ", numAccepted="
+				+ numAccepted + "]";
 	}
+
+
+	
+
 	
 	
 }

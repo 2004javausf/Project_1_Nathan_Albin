@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.trs.beans.AcceptDeny;
+import com.trs.beans.Denial;
 import com.trs.beans.Sentence;
 import com.trs.util.ConnFactory;
 
@@ -72,7 +74,7 @@ public class AcceptDenyDAOImpl {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				for(int i = 1; i <= 3; i++) {
-					if(rs.getString(i).equals("Accepted")) {
+					if(rs.getString(i).equals("Accept")) {
 						j = j + 1;
 					}
 				}
@@ -184,5 +186,26 @@ public class AcceptDenyDAOImpl {
 		return usr;
 	}
 
+	public static List<Denial> getDenials(String username) {
+		List<Denial> ad = new ArrayList<Denial>();
+		Connection conn = cf.getConnection();
+		String sql = "SELECT * FROM PROCESSING WHERE USERNAME = ? AND (BENCO_APPROVE = 'Deny' OR DIR_SUP_APPROVE = 'Deny' OR DEPT_HEAD_APPROVE = 'Deny')";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				ad.add(new Denial(rs.getInt(2), rs.getString(6), rs.getString(7), rs.getString(8)));
+			}
+			return ad;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ad;
+	}
+	
+	
+	
 }
 

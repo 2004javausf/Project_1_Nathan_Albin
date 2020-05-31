@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -7,9 +8,12 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './menuben.component.html',
   styleUrls: ['./menuben.component.css']
 })
-export class MenubenComponent implements OnInit {
+export class MenubenComponent implements OnInit, RouterModule {
 
-  constructor(private httpClient : HttpClient) { }
+  constructor(
+    private router : Router,
+    private route : ActivatedRoute,
+    private httpClient : HttpClient) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem("usr"));
@@ -43,9 +47,14 @@ export class MenubenComponent implements OnInit {
       for(i = 0; i < Object.keys(x).length; i++) {
         offerinfo.insertAdjacentHTML('beforeend', 
         "Form ID: " + x[i]["formId"] + ",    " +
-        "Username: " + x[i]["username"] + ",    " +
+        "Start Date: " + x[i]["startDate"] + ",    " +
         "Event Type: " + x[i]["eventType"] + ",    " +
-        "Event Cost: " + x[i]["eventCost"] + "<br>"
+        "Event Cost: " + x[i]["eventCost"] + ",    " +
+        "Grade: " + x[i]["grade"] + ",    " +
+        "Reimbursement Amount: " + x[i]["rAmt"] + ",    " +
+        "Additional Reimbursement: " + x[i]["rAdditional"] + ",    " +
+        "Status: " + x[i]["status"] + ",    " +
+        "Number Accepted: " + x[i]["numAccepted"] + "/3" + "<br>" + "<br>"
         ); 
       }
     });
@@ -64,5 +73,10 @@ export class MenubenComponent implements OnInit {
 
     });
   }
+
+  goToUserMenu() {
+    this.router.navigate(['/menu'], {relativeTo: this.route});
+  }
+
 
 }

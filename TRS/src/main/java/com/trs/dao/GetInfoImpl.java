@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.trs.beans.Application;
 import com.trs.beans.TRS_User;
 import com.trs.util.ConnFactory;
 
@@ -27,4 +28,6 @@ public class GetInfoImpl {
 		return tmpList;
 	}
 
+	
+	
 }

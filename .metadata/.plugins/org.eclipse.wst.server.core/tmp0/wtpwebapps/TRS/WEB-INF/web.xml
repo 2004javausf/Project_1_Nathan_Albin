@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>TRS</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
   <servlet>
     <description></description>
     <display-name>LoginServlet</display-name>
@@ -48,5 +40,35 @@
   <servlet-mapping>
     <servlet-name>AcceptDenyServlet</servlet-name>
     <url-pattern>/acceptdeny</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetAppInfoServlet</display-name>
+    <servlet-name>GetAppInfoServlet</servlet-name>
+    <servlet-class>com.trs.servlet.GetAppInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetAppInfoServlet</servlet-name>
+    <url-pattern>/appinfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateGradeServlet</display-name>
+    <servlet-name>UpdateGradeServlet</servlet-name>
+    <servlet-class>com.trs.servlet.UpdateGradeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateGradeServlet</servlet-name>
+    <url-pattern>/updategrade</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowDenialsServlet</display-name>
+    <servlet-name>ShowDenialsServlet</servlet-name>
+    <servlet-class>com.trs.servlet.ShowDenialsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowDenialsServlet</servlet-name>
+    <url-pattern>/denial</url-pattern>
   </servlet-mapping>
 </web-app>

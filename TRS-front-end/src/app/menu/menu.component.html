@@ -2,6 +2,10 @@
     <button (click)="showAccInfo()" type="button">Show/Update Account Information</button>
     <div id="userinfo"></div>
 </div>
+<div class="showappinfo" id="appinfo">
+    <button (click)="showAppInfo()" type="button">Show/Update Application Information</button>
+    <div id="userappinfo"></div>
+</div>
 <button id="showapp" (click)="toggle()">Create Application</button>
 <div id="createapp" class="createApplication" hidden>
     <p id="ms1">Event Type</p>
@@ -27,4 +31,25 @@
     <input id="date" name="currentDate" type="text" placeholder="YYYY-MM-DD" required>
     <button (click)="submitApp()" name="submitinfo" id="submitinfo" type="submit">Submit Information</button>
     <div id="returnStmt"></div>
+</div>
+<button (click)="showUpdateGrade()" type="button">Update Grade</button>
+<div class="updategrade" id="updgrade" hidden>
+    <p id="us1">Application ID</p>
+    <input id="fid" name="Fid" type="text" required>
+    <p id="us2">Grade</p>
+    <select id="gType" required>
+        <option value="Pass">Pass</option>
+        <option value="Fail">Fail</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="F">F</option>
+    </select>
+    <button (click)="updateGrade()" id="updgrade" type="submit">Submit Information</button>
+    <div id="updgradeReturnStmt"></div>
+</div>
+<button (click)="showDenials()" type="button">Show Denials</button>
+<div class="viewdenials" id="vdenials" hidden>
+
 </div>

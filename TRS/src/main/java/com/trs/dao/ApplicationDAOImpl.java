@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.trs.beans.Application;
+import com.trs.beans.Sentence;
 import com.trs.beans.TRS_User;
 import com.trs.util.ConnFactory;
 
@@ -118,7 +119,7 @@ public class ApplicationDAOImpl {
 	
 	public static void updateUser(String username, double remBal) {
 		Connection conn = cf.getConnection();
-		String sql = "UPDATE TRS_USERS SET BALANCE = " + remBal + "WHERE USERNAME = '" + username + "'";
+		String sql = "UPDATE TRS_USERS SET BALANCE = " + remBal + " WHERE USERNAME = '" + username + "'";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.executeUpdate(sql);
@@ -153,7 +154,9 @@ public class ApplicationDAOImpl {
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				app.add(new Application(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), rs.getString(9), rs.getString(10)));
+				int fid = rs.getInt(1);
+				int fiddy = AcceptDenyDAOImpl.getNumAccepted(fid);
+				app.add(new Application(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), rs.getString(9), rs.getString(10), fiddy));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -173,7 +176,9 @@ public class ApplicationDAOImpl {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				app.add(new Application(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), rs.getString(9), rs.getString(10)));
+				int fid = rs.getInt(1);
+				int fiddy = AcceptDenyDAOImpl.getNumAccepted(fid);
+				app.add(new Application(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), rs.getString(9), rs.getString(10), fiddy));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -181,6 +186,29 @@ public class ApplicationDAOImpl {
 		}		
 		return app;
 		
+	}
+	
+	public static List<Sentence> updateGrade(String username, int formId, String grade) {
+		List<Sentence> sen = new ArrayList<Sentence>();
+		Sentence s = new Sentence();
+		Connection conn = cf.getConnection();
+		String sql = "UPDATE FORMS SET F_GRADE = ? WHERE USERNAME = ? AND F_ID = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, grade);
+			ps.setString(2, username);
+			ps.setInt(3, formId);
+			ps.executeUpdate();
+			s.setSentence("Successfully updated grade!");
+			sen.add(s);
+			return sen;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			s.setSentence("Grade update failed. Please ensure correct information was inputted.");
+			sen.add(s);
+			return sen;
+		}
 	}
 	
 	

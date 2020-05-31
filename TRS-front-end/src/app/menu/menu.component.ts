@@ -36,8 +36,50 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  showUpdateGrade() {
+    var x = document.getElementById("updgrade");
+    if (x.style.display == "none") {
+      x.style.display = "block";
+    } else if (x.style.display == "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+
+  showDenials() {
+    var k = document.getElementById("vdenials");
+    if (k.style.display == "none") {
+      k.style.display = "block";
+    } else if (k.style.display == "block") {
+      k.style.display = "none";
+    } else {
+      k.style.display = "block";
+    }
+    let vdenials = document.getElementById("vdenials");
+    let input = {
+      "username" : localStorage.getItem("usr")
+    }
+    this.httpClient.post("http://localhost:8080/TRS/denial", input)
+    .subscribe(x => {
+      console.log(x);
+      let i = 0;
+      vdenials.innerHTML = "";
+      for(i = 0; i < Object.keys(x).length; i++) {
+        vdenials.insertAdjacentHTML('beforeend', 
+        "Form ID: " + x[i]["formId"] + ",    " +
+        "Benefits Coordinator Reason: " + x[i]["bencoReason"] + ",    " +
+        "Dept. Head Reason: " + x[i]["deptheadReason"] + ",    " +
+        "Direct Supervisor Reason: " + x[i]["dirsupReason"] + "<br>" + "<br>"
+        ); 
+      }
+
+    });
+
+  }
+
   submitApp() {
-    var form = {
+    let form = {
       "username": localStorage.getItem("usr"),
       "eventType": ((document.getElementById("eventType") as HTMLInputElement).value),
       "eventCost": ((document.getElementById("cost") as HTMLInputElement).value),
@@ -59,7 +101,6 @@ export class MenuComponent implements OnInit {
   
   }
   
-  
   showAccInfo() {
     let userinfo = document.getElementById("userinfo");
     let usr = {
@@ -78,9 +119,48 @@ export class MenuComponent implements OnInit {
         "Account Type: " + xxx[0]["accType"];
     });
 
-
-  
   }
 
-  
+  showAppInfo() {
+    let appinfo = document.getElementById("userappinfo");
+    let usr = {
+      username : localStorage.getItem("usr")
+    }
+    this.httpClient.post("http://localhost:8080/TRS/appinfo", usr)
+    .subscribe(x => {
+      console.log(x);
+      let i = 0;
+      appinfo.innerHTML = "";
+      for(i = 0; i < Object.keys(x).length; i++) {
+        appinfo.insertAdjacentHTML('beforeend', 
+        "Form ID: " + x[i]["formId"] + ",    " +
+        "Start Date: " + x[i]["startDate"] + ",    " +
+        "Event Type: " + x[i]["eventType"] + ",    " +
+        "Event Cost: " + x[i]["eventCost"] + ",    " +
+        "Grade: " + x[i]["grade"] + ",    " +
+        "Reimbursement Amount: " + x[i]["rAmt"] + ",    " +
+        "Additional Reimbursement: " + x[i]["rAdditional"] + ",    " +
+        "Status: " + x[i]["status"] + ",    " +
+        "Number Accepted: " + x[i]["numAccepted"] + "/3" + "<br>" + "<br>"
+        ); 
+      }
+    });
+  }
+
+  updateGrade() {
+
+    let updgradeReturnStmt = document.getElementById("updgradeReturnStmt");
+    let input = {
+      "username" : localStorage.getItem("usr"),
+      "formId": ((document.getElementById("fid") as HTMLInputElement).value),
+      "grade": ((document.getElementById("gType") as HTMLInputElement).value)
+    }
+    this.httpClient.post("http://localhost:8080/TRS/updategrade", input)
+    .subscribe(x => {
+      updgradeReturnStmt.innerHTML = "";
+      updgradeReturnStmt.insertAdjacentHTML('beforeend', x[0]["sentence"]);
+    });
+  }
+
+
 }
