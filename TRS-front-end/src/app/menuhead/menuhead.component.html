@@ -1,3 +1,5 @@
+<p id="imap">Dept. Head & Direct Supervisor Menu</p>
+<body class="thebody">
 <div class="ShowEventOffers">
     <button (click)="getAllOffers()" type="button">Show Active Applications</button> 
     <div id="offerinfo" hidden></div>
@@ -19,9 +21,10 @@
     <button (click)="acceptDenyOffer()" name="submitacceptdeny" id="submitinfo" type="submit">Submit</button>
     <div id="returnstmt"></div>
 </div>
-<div>
+<div class="gotouser">
     <button (click)="goToUserMenu()" type="button">Go to user menu</button>
 </div>
 <div class="LogOut" id="logout">
     <button (click) = "logout()" id="btn1" type="button">Logout</button>
 </div>
+</body>

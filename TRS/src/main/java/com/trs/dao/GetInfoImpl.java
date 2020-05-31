@@ -25,6 +25,7 @@ public class GetInfoImpl {
 		while(rs.next()) {
 			tmpList.add(new TRS_User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getString(6)));
 		}
+		conn.close();
 		return tmpList;
 	}
 

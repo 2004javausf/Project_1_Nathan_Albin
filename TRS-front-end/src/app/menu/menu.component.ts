@@ -44,6 +44,7 @@ export class MenuComponent implements OnInit, RouterModule {
       let i = 0;
       todonotif.innerHTML = "";
       for(i = 0; i < Object.keys(x).length; i++) {
+        todonotif.innerHTML = "";
         todonotif.insertAdjacentHTML('afterbegin', 
         "Form ID: " + x[i]["formId"] + ",    " +
         "New Amount: " + x[i]["changeAmt"] + ",    " +

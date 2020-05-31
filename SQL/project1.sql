@@ -99,8 +99,6 @@ COMMIT;
 END;
 /
 
-commit;
-
 
 
 

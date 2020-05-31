@@ -26,6 +26,7 @@ public class LoginDAOImpl {
             ps.setString(3, accType);
             ResultSet rs =ps.executeQuery();
             st = rs.next();
+            conn.close();
 
         }
         catch(Exception e) {

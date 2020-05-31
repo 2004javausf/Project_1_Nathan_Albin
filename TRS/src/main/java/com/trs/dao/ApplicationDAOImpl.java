@@ -54,6 +54,7 @@ public class ApplicationDAOImpl {
 			ps.setDate(5, eventDate);
 			java.sql.Date currentDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());
 			if(currentDate.getTime() >= (eventDate.getTime() - 604800000)) {
+				conn.close();
 				return false;
 			} else if (currentDate.getTime() >= (eventDate.getTime() - 1209600000)) {
 				ps.setString(6, "Not Accepted (Urgent)");
@@ -64,6 +65,7 @@ public class ApplicationDAOImpl {
 					updateUser(username, remBal);
 					insertProcess(username);
 					ps.executeQuery();
+					conn.close();
 					return true;
 						
 				} else {
@@ -71,6 +73,7 @@ public class ApplicationDAOImpl {
 					updateUser(username, remBal);
 					insertProcess(username);
 					ps.executeQuery();
+					conn.close();
 					return true;
 				}
 				
@@ -83,6 +86,7 @@ public class ApplicationDAOImpl {
 					updateUser(username, remBal);
 					insertProcess(username);
 					ps.executeQuery();
+					conn.close();
 					return true;
 						
 				} else {
@@ -90,6 +94,7 @@ public class ApplicationDAOImpl {
 					updateUser(username, remBal);
 					insertProcess(username);
 					ps.executeQuery();
+					conn.close();
 					return true;
 				}
 			}
@@ -108,6 +113,7 @@ public class ApplicationDAOImpl {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				double remBal = rs.getDouble(1);
+				conn.close();
 				return remBal;
 			}
 		} catch (SQLException e) {
@@ -123,6 +129,7 @@ public class ApplicationDAOImpl {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.executeUpdate(sql);
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -135,6 +142,7 @@ public class ApplicationDAOImpl {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.executeQuery(sql);
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -158,11 +166,12 @@ public class ApplicationDAOImpl {
 				int fiddy = AcceptDenyDAOImpl.getNumAccepted(fid);
 				app.add(new Application(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), rs.getString(9), rs.getString(10), fiddy));
 			}
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		return app;
 		
 		
@@ -180,6 +189,7 @@ public class ApplicationDAOImpl {
 				int fiddy = AcceptDenyDAOImpl.getNumAccepted(fid);
 				app.add(new Application(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getDouble(8), rs.getString(9), rs.getString(10), fiddy));
 			}
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -201,12 +211,20 @@ public class ApplicationDAOImpl {
 			ps.executeUpdate();
 			s.setSentence("Successfully updated grade!");
 			sen.add(s);
+			conn.close();
 			return sen;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			s.setSentence("Grade update failed. Please ensure correct information was inputted.");
 			sen.add(s);
+			try {
+				conn.close();
+				return sen;
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			return sen;
 		}
 	}

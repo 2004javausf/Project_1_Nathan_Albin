@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 10;
+    box-sizing: border-box;
+    
+}
+
+
+.TheBody {
+    background: linear-gradient(to left, rgb(118, 163, 177), rgb(113, 184, 128));
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    height: 100vh;
+}
+
+#parap {
+    text-align: center;
+    font-size: 200%;
+    position: fixed;
+    color: darkcyan;
+    background-color: lemonchiffon;
+    width: 100%;
+}
+
+#btn1 {
+    position: absolute;
+    bottom: 80%;
+    left: 46%;
+}

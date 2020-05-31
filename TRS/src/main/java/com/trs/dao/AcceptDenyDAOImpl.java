@@ -34,7 +34,9 @@ public class AcceptDenyDAOImpl {
 					ps.executeUpdate();
 					sen.setSentence("Successfully accepted account. Form state is now in processing.");
 					s.add(sen);
+					conn.close();
 					return s;
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -44,6 +46,13 @@ public class AcceptDenyDAOImpl {
 				updateStatus(formId, acceptDeny, accType, reason);
 				sen.setSentence("Successfully accepted account");
 				s.add(sen);
+				try {
+					conn.close();
+					return s;
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				return s;
 			}
 		} else {
@@ -57,6 +66,7 @@ public class AcceptDenyDAOImpl {
 				ps.executeUpdate();
 				sen.setSentence("Successfully denied account");
 				s.add(sen);
+				conn.close();
 				return s;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -84,6 +94,13 @@ public class AcceptDenyDAOImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			conn.close();
+			return j;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return j;
 	}
 	
@@ -107,6 +124,7 @@ public class AcceptDenyDAOImpl {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,11 +142,13 @@ public class AcceptDenyDAOImpl {
 				usr = rs.getString(1);
 				return usr;
 			}
+			conn.close();
 			return usr;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return usr;
 	}
 	
@@ -145,6 +165,7 @@ public class AcceptDenyDAOImpl {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -162,6 +183,7 @@ public class AcceptDenyDAOImpl {
 				usr = rs.getDouble(1);
 				return usr;
 			}
+			conn.close();
 			return usr;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -182,6 +204,7 @@ public class AcceptDenyDAOImpl {
 				usr = rs.getDouble(1);
 				return usr;
 			}
+			conn.close();
 			return usr;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -201,6 +224,7 @@ public class AcceptDenyDAOImpl {
 			while(rs.next()) {
 				ad.add(new Denial(rs.getInt(2), rs.getString(6), rs.getString(7), rs.getString(8)));
 			}
+			conn.close();
 			return ad;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -224,6 +248,7 @@ public class AcceptDenyDAOImpl {
 				ps.setString(1, "Not Awarded");
 				ps.setInt(2, formId);
 				ps.executeUpdate();
+				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -239,6 +264,7 @@ public class AcceptDenyDAOImpl {
 				ps.setString(1, "Awarded");
 				ps.setInt(2, formId);
 				ps.executeUpdate();
+				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -256,6 +282,7 @@ public class AcceptDenyDAOImpl {
 			ps.setDouble(1, addReim);
 			ps.setInt(2, formId);
 			ps.executeUpdate();
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -282,6 +309,7 @@ public class AcceptDenyDAOImpl {
 				call.execute();
 				sen.setSentence("Successfully changed reimbursement amount.");
 				s.add(sen);
+				conn.close();
 				return s;
 			} else {
 				bal = bal - (changeAmt - reAmt);
@@ -293,6 +321,7 @@ public class AcceptDenyDAOImpl {
 				call.execute();
 				sen.setSentence("Successfully changed reimbursement amount.");
 				s.add(sen);
+				conn.close();
 				return s;
 			}
 		} else if(changeAmt <= reAmt) {
@@ -305,6 +334,7 @@ public class AcceptDenyDAOImpl {
 			call.execute();
 			sen.setSentence("Successfully changed reimbursement amount.");
 			s.add(sen);
+			conn.close();
 			return s;
 		}
 		return s;
@@ -321,6 +351,7 @@ public class AcceptDenyDAOImpl {
 			while(rs.next()) {
 				notif.add(new Notification(rs.getString(1), rs.getInt(2), rs.getDouble(3), rs.getDouble(4), rs.getString(5)));
 			}
+			conn.close();
 			return notif;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -348,6 +379,7 @@ public class AcceptDenyDAOImpl {
 				call.setString(3, username);
 				call.execute();
 				b = false;
+				conn.close();
 				return b;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -360,6 +392,7 @@ public class AcceptDenyDAOImpl {
 				PreparedStatement ps = conn.prepareStatement(sql2);
 				ps.setInt(1, formId);
 				ps.executeUpdate();
+				conn.close();
 				return b;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
