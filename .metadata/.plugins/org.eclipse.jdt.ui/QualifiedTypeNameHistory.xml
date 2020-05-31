@@ -3,8 +3,10 @@
 <fullyQualifiedTypeName name="com.trs.beans.Sentence"/>
 <fullyQualifiedTypeName name="com.trs.beans.Grade"/>
 <fullyQualifiedTypeName name="com.trs.dao.ApplicationDAOImpl"/>
-<fullyQualifiedTypeName name="com.trs.beans.AcceptDeny"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="com.trs.beans.Denial"/>
+<fullyQualifiedTypeName name="com.trs.beans.ReAmtChange"/>
+<fullyQualifiedTypeName name="com.trs.beans.Notification"/>
 <fullyQualifiedTypeName name="com.trs.dao.AcceptDenyDAOImpl"/>
+<fullyQualifiedTypeName name="com.trs.beans.AcceptDeny"/>
 </qualifiedTypeNameHistroy>

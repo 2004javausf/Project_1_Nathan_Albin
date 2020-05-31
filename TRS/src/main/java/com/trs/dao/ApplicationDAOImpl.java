@@ -147,7 +147,7 @@ public class ApplicationDAOImpl {
 		
 		List<Application> app = new ArrayList<Application>();
 		Connection conn = cf.getConnection();
-		String sql = "SELECT * FROM FORMS WHERE USERNAME = ?";
+		String sql = "SELECT * FROM FORMS WHERE USERNAME = ? AND (F_STATUS = 'Not Accepted' OR F_STATUS = 'Awarded' OR F_STATUS = 'Processing' OR F_STATUS = 'Not Accepted (Urgent)' OR F_STATUS = 'Not Awarded')";
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);

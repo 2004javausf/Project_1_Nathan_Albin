@@ -71,4 +71,44 @@
     <servlet-name>ShowDenialsServlet</servlet-name>
     <url-pattern>/denial</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProcessAppServlet</display-name>
+    <servlet-name>ProcessAppServlet</servlet-name>
+    <servlet-class>com.trs.servlet.ProcessAppServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProcessAppServlet</servlet-name>
+    <url-pattern>/processapp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeReAmtServlet</display-name>
+    <servlet-name>ChangeReAmtServlet</servlet-name>
+    <servlet-class>com.trs.servlet.ChangeReAmtServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeReAmtServlet</servlet-name>
+    <url-pattern>/changereamt</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetNotificationServlet</display-name>
+    <servlet-name>GetNotificationServlet</servlet-name>
+    <servlet-class>com.trs.servlet.GetNotificationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetNotificationServlet</servlet-name>
+    <url-pattern>/getnotification</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RemoveNotificationServlet</display-name>
+    <servlet-name>RemoveNotificationServlet</servlet-name>
+    <servlet-class>com.trs.servlet.RemoveNotificationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveNotificationServlet</servlet-name>
+    <url-pattern>/removenotification</url-pattern>
+  </servlet-mapping>
 </web-app>

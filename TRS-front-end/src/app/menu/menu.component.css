@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 10;
+    box-sizing: border-box;
+}
+
+.thebody {
+    background: linear-gradient(to left, rgb(118, 163, 177), rgb(113, 184, 128));
+}
+
+#userinfo {
+    background-color: slategray;
+}
+
+#userappinfo {
+    background-color: slategray;
+}
+
+#thetitle {
+    font-size: x-large;
+    
+}
+
+.LogOut {
+    position: relative;
+    top: 300px;
+    left: 49px;
+}
+
+.updategrade {
+    position: relative;
+    left: 385px;
+}
+
+#updgbtn {
+    position: relative;
+    left: 250px;
+}

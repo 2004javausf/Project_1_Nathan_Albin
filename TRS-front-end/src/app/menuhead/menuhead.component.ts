@@ -16,6 +16,15 @@ export class MenuheadComponent implements OnInit, RouterModule {
 
   ngOnInit(): void {
     console.log(localStorage.getItem("usr"));
+    let j = localStorage.getItem("usr");
+    if(j == null) {
+      this.router.navigate(['/login'], {relativeTo: this.route});
+    }
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login'], {relativeTo: this.route});
   }
 
   toggle() {

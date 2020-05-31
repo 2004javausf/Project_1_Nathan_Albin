@@ -6,6 +6,8 @@ public class AcceptDeny {
 	private String acceptDeny;
 	private String accType;
 	private String reason;
+	private int addReim;
+	
 	public AcceptDeny() {
 		super();
 	}
@@ -15,6 +17,17 @@ public class AcceptDeny {
 		this.acceptDeny = acceptDeny;
 		this.accType = accType;
 		this.reason = reason;
+	}
+	
+	
+	
+	public AcceptDeny(int formId, String acceptDeny, String accType, String reason, int addReim) {
+		super();
+		this.formId = formId;
+		this.acceptDeny = acceptDeny;
+		this.accType = accType;
+		this.reason = reason;
+		this.addReim = addReim;
 	}
 	public int getFormId() {
 		return formId;
@@ -40,11 +53,20 @@ public class AcceptDeny {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+	public int getAddReim() {
+		return addReim;
+	}
+	public void setAddReim(int addReim) {
+		this.addReim = addReim;
+	}
 	@Override
 	public String toString() {
 		return "AcceptDeny [formId=" + formId + ", acceptDeny=" + acceptDeny + ", accType=" + accType + ", reason="
-				+ reason + "]";
+				+ reason + ", addReim=" + addReim + "]";
 	}
+
+	
+	
 	
 	
 

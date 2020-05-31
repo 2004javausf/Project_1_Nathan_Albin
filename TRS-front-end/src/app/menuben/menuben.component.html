@@ -15,10 +15,42 @@
     </select>
     <br>
     <p id="as3">Reason (reason not required for accepting form)</p>
-    <input id="reason" name="denyReason" type="text" placeholder="none">
+    <input id="reason" name="denyReason" type="text" value="none">
     <button (click)="acceptDenyOffer()" name="submitacceptdeny" id="submitinfo" type="submit">Submit</button>
     <div id="returnstmt"></div>
 </div>
+<button id="showprocessinput" (click)="showProcessInput()">Process Application</button>
+<div class="processapplication" id="papp" hidden>
+    <p id="ps1">Form ID</p>
+    <input id="ffid" name="ffID" type="text" required>
+    <br>
+    <p id="ps2">Confirm or Deny Process</p>
+    <select id = "processorno" required>
+        <option value="Accept">Accept</option>
+        <option value="Deny">Deny</option>
+    </select>
+    <br>
+    <p id="ps3">Reason (reason not required for accepting form)</p>
+    <input id="reeson" name="dreeson" type="text" value="none">
+    <br>
+    <p id="ps4">Add Additional Reimbursement</p>
+    <input id="addreim" name="AddReimbursement" type="text" value="0">
+    <button (click)="processReim()" name="processreimbursement" id="preim" type="submit">Submit Information</button>
+    <div id="rstatement"></div>
+</div>
+<button id="showchreamt" (click)="showChReAmt()">Change Reimbursement Amount</button>
+<div class="ChangeReimbursementAmt" id="chreamt" hidden>
+    <p id="cr1">Form ID</p>
+    <input id="fffid" name="fffID" type="text" required>
+    <br>
+    <p id="cr2">Reimbursement Amount</p>
+    <input id="reamount" name="ReAmount" type="text" required>
+    <button (click)="changeReimbursement()" name="ChangeReimbursement" id="chrem" type="submit">Submit Change</button>
+    <div id="chrestmt"></div>
+</div>
 <div>
     <button (click)="goToUserMenu()" type="button">Go to user menu</button>
+</div>
+<div class="LogOut" id="logout">
+    <button (click) = "logout()" id="btn1" type="button">Logout</button>
 </div>

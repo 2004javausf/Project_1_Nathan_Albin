@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { TRS_User } from '../TRS_User'
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { Route } from '@angular/compiler/src/core';
 
 
 
@@ -13,16 +15,58 @@ import { UserService } from '../services/user.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, RouterModule {
 
   users: Observable<TRS_User[]>;
 
   constructor(
     private httpClient: HttpClient,
-    private userService : UserService) { }
+    private userService : UserService,
+    private router : Router,
+    private route : ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem("usr"))
+    console.log(localStorage.getItem("usr"));
+    this.getNotifications();
+    let j = localStorage.getItem("usr");
+    if(j == null) {
+      this.router.navigate(['/login'], {relativeTo: this.route});
+    }
+  }
+
+  getNotifications() {
+    let todonotif = document.getElementById("todonotif");
+    let input = {
+      "username" : localStorage.getItem("usr")
+    }
+    this.httpClient.post("http://localhost:8080/TRS/getnotification", input)
+    .subscribe(x => {
+      let i = 0;
+      todonotif.innerHTML = "";
+      for(i = 0; i < Object.keys(x).length; i++) {
+        todonotif.insertAdjacentHTML('afterbegin', 
+        "Form ID: " + x[i]["formId"] + ",    " +
+        "New Amount: " + x[i]["changeAmt"] + ",    " +
+        "New Balance: " + x[i]["newBal"] + "<br>" + "<br>"
+        ); 
+      }
+    });
+  }
+
+  accDenyNotif() {
+    let notifreturnstmt = document.getElementById("notifreturnstmt");
+    let input = {
+      "formId" : ((document.getElementById("f4id") as HTMLInputElement).value),
+      "acceptDeny" : ((document.getElementById("accden") as HTMLInputElement).value)
+    }
+    this.httpClient.post("http://localhost:8080/TRS/removenotification", input)
+    .subscribe(x => {
+      if (x == true) {
+        notifreturnstmt.innerHTML = "Accepted changes.";
+      } else if (x == false) {
+        notifreturnstmt.innerHTML = "Denied changes. Application has been voided and reimbursement amount has been returned to account balance.";
+      }
+    });
   }
 
   toggle() {
@@ -160,6 +204,11 @@ export class MenuComponent implements OnInit {
       updgradeReturnStmt.innerHTML = "";
       updgradeReturnStmt.insertAdjacentHTML('beforeend', x[0]["sentence"]);
     });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login'], {relativeTo: this.route});
   }
 
 

@@ -1,3 +1,6 @@
+
+<body class="thebody">
+<p id="thetitle">Employee Menu</p>
 <div class="showaccinfo" id="accinfo">
     <button (click)="showAccInfo()" type="button">Show/Update Account Information</button>
     <div id="userinfo"></div>
@@ -32,7 +35,7 @@
     <button (click)="submitApp()" name="submitinfo" id="submitinfo" type="submit">Submit Information</button>
     <div id="returnStmt"></div>
 </div>
-<button (click)="showUpdateGrade()" type="button">Update Grade</button>
+<button (click)="showUpdateGrade()" type="button" id="updgbtn">Update Grade</button>
 <div class="updategrade" id="updgrade" hidden>
     <p id="us1">Application ID</p>
     <input id="fid" name="Fid" type="text" required>
@@ -49,7 +52,24 @@
     <button (click)="updateGrade()" id="updgrade" type="submit">Submit Information</button>
     <div id="updgradeReturnStmt"></div>
 </div>
+<br>
 <button (click)="showDenials()" type="button">Show Denials</button>
-<div class="viewdenials" id="vdenials" hidden>
-
+<div class="viewdenials" id="vdenials" hidden></div>
+<div class="element43" id="Element43">
+    <p>Required Actions</p>
+    <div class="todo" id="todonotif"></div>
+    <div class="adnotif" id="adNotif">
+        <p id="us1">Form ID</p>
+        <input id="f4id" name="theid" type="text" required>
+        <select id='accden' required>
+            <option value='Accept'>Accept</option>
+            <option value='Deny'>Deny</option>
+        </select>
+        <button (click)="accDenyNotif()" id='accdenynotif' type='submit'>Accept/Deny Change</button>
+        <div id='notifreturnstmt'></div>
+    </div>
 </div>
+<div class="LogOut" id="logout">
+    <button (click) = "logout()" id="btn1" type="button">Logout</button>
+</div>
+</body>
