@@ -68,6 +68,7 @@ export class MenuheadComponent implements OnInit, RouterModule {
     });
   }
   acceptDenyOffer() {
+    let returnstmt = document.getElementById("returnstmt");
     var info = {
       "formId": ((document.getElementById("formId") as HTMLInputElement).value),
       "acceptDeny": ((document.getElementById("acceptordeny") as HTMLInputElement).value),
@@ -76,7 +77,7 @@ export class MenuheadComponent implements OnInit, RouterModule {
     }
 
     this.httpClient.post("http://localhost:8080/TRS/acceptdeny", info).subscribe(x => {
-      console.log(x);
+      returnstmt.innerHTML = x[0]["sentence"];
 
 
     });
